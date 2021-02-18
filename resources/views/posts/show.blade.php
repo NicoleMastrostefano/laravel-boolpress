@@ -6,5 +6,6 @@
   </head>
   <body>
     @dump($post->infoPost->getAttributes())
+    @dump($post->comments)
   </body>
 </html>

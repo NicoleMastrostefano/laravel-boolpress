@@ -21,7 +21,7 @@ class CreateInfoPostsTable extends Migration
             // $table->timestamps();
             // relazioni
             $table->foreign('post_id')
-                  ->referencies('id')
+                  ->references('id')
                   ->on('posts');
         });
     }
