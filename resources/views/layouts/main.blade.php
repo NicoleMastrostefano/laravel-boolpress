@@ -6,14 +6,13 @@
     <title>Laravel-boolpress</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   </head>
-  <body>
+  <body style="background-color:#EEEEEE;">
     <div class="container">
       <header>
         @yield('header')
       </header>
       <main>
         @yield('content')
-
       </main>
       <footer>
         @yield('footer')

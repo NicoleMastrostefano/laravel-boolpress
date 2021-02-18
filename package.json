@@ -23,6 +23,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.2",
         "bootstrap": "^4.6.0"
     }
 }

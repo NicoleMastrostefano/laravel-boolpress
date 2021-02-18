@@ -1,21 +1,19 @@
 @extends('layouts.main')
 
 @section('header')
-  <h1 style="text-align:center"class="my-5">posts</h1>
+  <h1 style="text-align:center"class="my-5">Boolpress - All posts</h1>
 @endsection
 
 @section('content')
 
 
-<table class="table table-dark table-striped table-bordered">
+<table class="table table-light table-striped table-bordered">
   <thead>
     <tr>
       <th>ID</th>
-      <th>titolo</th>
-      <th>sottotitolo</th>
-      <th>testo</th>
-      <th>autore</th>
-      <th>data</th>
+      <th>Titolo</th>
+      <th>Autore</th>
+      <th>Data</th>
       <th></th>
     </tr>
   </thead>
@@ -24,27 +22,19 @@
     <tr>
       <td> {{ $post->id }}</td>
       <td> {{ $post->title }}</td>
-      <td> {{ $post->subtitle }}</td>
-      <!-- <td> {{ $post->text }}</td> -->
       <td> {{ $post->author }}</td>
       <td> {{ $post->publication_date }}</td>
       <td>
-        <a href="{{ route('posts.show',$post->id) }}" class="btn btn-outline-light"><i class="fas fa-search-plus"></i>mostra</a>
+        <a href="{{ route('posts.show',$post->id) }}" class="btn btn-outline-dark"><i class="fas fa-search-plus"></i></a>
       </td>
-
     </tr>
     @endforeach
   </tbody>
 </table>
 @endsection
 
-
-
-    <!-- @foreach ($posts as $post)
-        <h1>{{ $post->title }}</h1>
-        <h2>{{ $post->subtitle}}</h2>
-        <small>{{ $post->author }}</small>
-        <button><a href="{{ route('posts.show',$post->id) }}" class="btn btn-outline-dark"></a><i class="fas fa-search-plus"></i></button>
-    @endforeach
-  </body>
-</html> -->
+@section('footer')
+<div class="text-right">
+  <a href="{{ route('posts.create')}}"class="btn btn-lg btn-dark mb-5">Crea un nuovo post</a>
+</div>
+@endsection
