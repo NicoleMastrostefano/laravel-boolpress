@@ -13,5 +13,5 @@ class InfoPost extends Model
     public function post(){
       return $this->belongTo('App\Post');
     }
-    
+
 }

@@ -27,6 +27,11 @@
           </tr>
         </tbody>
     </table>
+    @if($post->infoPost->post_status == 'private')
+    <a href=""class="btn btn-lg btn-dark">Pubblica post</a>
+    @elseif($post->infoPost->post_status == 'draft')
+    <a href=""class="btn btn-lg btn-dark">modifica post</a>
+    @endif
   <div>
     <h2 class="mt-5">Comments</h2>
     @foreach($post->comments as $comment)
@@ -36,6 +41,9 @@
       <hr>
     </div>
     @endforeach
+    @if($post->infoPost->comment_status == 'open' && $post->infoPost->post_status == 'public')
+    <a href=""class="btn btn-lg btn-dark">Commenta</a>
+    @endif
   </div>
 @endsection
 

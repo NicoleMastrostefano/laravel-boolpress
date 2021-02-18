@@ -7,6 +7,12 @@ use App\Post;
 
 class PostController extends Controller
 {
+  private $postValidation = [
+      'title'=>'required|max:150',
+      'subtitle'=>'required|max:150',
+      'text'=>'required|max:5000',
+      'author'=>'required|max:30',
+  ];
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -37,7 +43,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // $data= $request->all();
+      //
+      // $post = new Post();
+      //
+      // $post->fill($data);
+      // $post->save();
+      //
+      // return redirect()->route('posts.index',$newPost);
     }
 
     /**
@@ -57,9 +70,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit',compact('post'));
     }
 
     /**
