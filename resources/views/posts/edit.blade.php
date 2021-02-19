@@ -27,14 +27,34 @@
   </div>
   <div class="form-group">
     <label for="text">Testo</label>
-    <textarea name="text" rows="6" class="form-control" id='text'name="text" placeholder="testo"value="{{ $post->text }}"></textarea>
+    <textarea name="text" rows="6" class="form-control" id='text'name="text" placeholder="testo">{{ $post->text }}</textarea>
   </div>
   <div class="form-group">
     <label for="author">Autore</label>
     <input type="text" class="form-control" id='author' name="author" placeholder="autore"
     value="{{ $post->author }}">
   </div>
-
+  <div class="form-group">
+    <label for="publication_date">Data</label>
+    <input type="text" class="form-control" id='publication_date' name="publication_date" placeholder="YYYY-MM-GG"
+    value="{{ $post->publication_date }}">
+  </div>
+  <div class="form-group">
+    <label for="post_status">Stato del post</label>
+    <select class="custom-select" id="post_status"name="post_status">
+      <option value="draft" {{ ($post->infoPost->post_status == 'draft') ? 'selected' : '' }} >DRAFT</option>
+      <option value="private"{{ ($post->infoPost->post_status == 'private') ? 'selected' : '' }}>PRIVATE</option>
+      <option value="public"{{ ($post->infoPost->post_status == 'public') ? 'selected' : '' }}>PUBLIC</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="comment_status">Stato commenti</label>
+    <select class="custom-select" id="comment_status"name="comment_status">
+      <option value="open"{{ ($post->infoPost->comment_status=='open')?'selected': '' }}>OPEN</option>
+      <option value="closed"{{ ($post->infoPost->comment_status=='closed')?'selected': '' }}>CLOSED</option>
+      <option value="private"{{ ($post->infoPost->comment_status=='private')?'selected': '' }}>PRIVATE</option>
+    </select>
+  </div>
   <div class="text-right">
     <input type="submit" value="Salva"class="btn btn-primary">
   <a href="{{route('posts.index') }}"class="btn btn-dark">Indietro</a>

@@ -12,6 +12,7 @@
   </main>
 </section>
 
+@if($post->infoPost->comment_status == 'open')
 <section id="comments">
   <h2>Commenti</h2>
   @foreach ($post->comments as $comment)
@@ -39,4 +40,5 @@
     </form>
   </div>
 </section>
+@endif
 @endsection

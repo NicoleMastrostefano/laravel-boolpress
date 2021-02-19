@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\InfoPost;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -45,14 +47,21 @@ class PostController extends Controller
     public function store(Request $request)
     {
       $data= $request->all();
-
+      $data["slug"]= Str::slug($data['title']);
       $request->validate($this->postValidation);
 
+      // creo e salvo il post
       $post = new Post();
       $title = $post->title;
       $post->fill($data);
       $post->save();
-      //
+
+      // creo e salvo il infoPost
+      $data['post_id']=$post->id;
+      $infoPost =new InfoPost();
+      $infoPost->fill($data);
+      $infoPost->save();
+
       return redirect()
       ->route('posts.index')
       ->with('message', 'Post ' . $title. " creato correttamente!");
@@ -87,9 +96,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+      $data= $request->all();
+      $data["slug"]= Str::slug($data['title']);
+      $request->validate($this->postValidation);
+
+      $post->update($data);
+
+      $infoPost =InfoPost::where('post_id',$post->id)->first();
+      $data['post_id']=$post->id;
+      $post->update($data);
+
+      return redirect()
+      ->route('posts.index')
+      ->with('message','Post' . " aggiornato correttamente!");
     }
 
     /**
