@@ -32,17 +32,32 @@
     @elseif($post->infoPost->post_status == 'draft')
     <a href=""class="btn btn-lg btn-dark">modifica post</a>
     @endif
-  <div>
-    <h2 class="mt-5">Comments</h2>
-    @foreach($post->comments as $comment)
+
+    @if($post->infoPost->post_status == 'public')
     <div>
-      <p> {{ $comment->author }}</p>
-      <p> {{ $comment->text }}</p>
-      <hr>
+      <h2 class="mt-5">Comments</h2>
+      @foreach($post->comments as $comment)
+      <div>
+        <p> {{ $comment->author }}</p>
+        <p> {{ $comment->text }}</p>
+        <hr>
+      @endforeach
+      </div>
+
+    <div class="my-5">
+      <form action="{{ route('comment.store', ['post_id' => $post->id]) }}" method="POST">
+        @csrf
+        @method('POST')
+        <div class="form-group">
+          <input type="text" class="form-control" name="author" id="author"
+          placeholder="Your Name" value="">
+        </div>
+        <div class="form-group">
+          <textarea type="text" class="form-control" name="text" id="content" placeholder="Your Comment" value="" rows="3"></textarea>
+        </div>
+          <input type="submit" class="btn btn-info" value="Add Comment">
+        </form>
     </div>
-    @endforeach
-    @if($post->infoPost->comment_status == 'open' && $post->infoPost->post_status == 'public')
-    <a href=""class="btn btn-lg btn-dark">Commenta</a>
     @endif
   </div>
 @endsection

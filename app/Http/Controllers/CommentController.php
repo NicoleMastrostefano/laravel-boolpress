@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comment;
 use App\Post;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
-  private $postValidation = [
-      'title'=>'required|max:150',
-      'subtitle'=>'required|max:150',
-      'text'=>'required|max:5000',
-      'author'=>'required|max:60',
-  ];
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-      $posts = Post::all();
-      return view('posts.index', compact('posts'));
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -43,14 +36,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      // $data= $request->all();
-      //
-      // $post = new Post();
-      //
-      // $post->fill($data);
-      // $post->save();
-      //
-      // return redirect()->route('posts.index',$newPost);
+      $request->validate([
+          'author' => 'required',
+          'text' => 'required',
+      ]);
+
+      $data = $request->all();
+
+      $newComment = New Comment();
+      $newComment->fill($data);
+
+      $newComment->save();
+
+        return redirect(url()->previous());
+
+
     }
 
     /**
@@ -59,9 +59,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        return view('posts.show',compact('post'));
+        //
     }
 
     /**
@@ -70,9 +70,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        return view('posts.edit',compact('post'));
+        //
     }
 
     /**
