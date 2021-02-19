@@ -12,6 +12,7 @@ class PostController extends Controller
       'subtitle'=>'required|max:150',
       'text'=>'required|max:5000',
       'author'=>'required|max:60',
+      'publication_date'=>'required'
   ];
     /**
      * Display a listing of the resource.
@@ -43,14 +44,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      // $data= $request->all();
+      $data= $request->all();
+
+      $request->validate($this->postValidation);
+
+      $post = new Post();
+
+      $post->fill($data);
+      $post->save();
       //
-      // $post = new Post();
-      //
-      // $post->fill($data);
-      // $post->save();
-      //
-      // return redirect()->route('posts.index',$newPost);
+      return redirect()
+      ->route('posts.index');
     }
 
     /**

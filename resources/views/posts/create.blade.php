@@ -34,9 +34,14 @@
     <input type="text" class="form-control" id='author' name="author" placeholder="autore"
     value="{{ old('author') }}">
   </div>
+  <div class="form-group">
+    <label for="publication_date">Data</label>
+    <input type="text" class="form-control" id='publication_date' name="publication_date" placeholder="YYYY-MM-GG"
+    value="{{ old('publication_date') }}">
+  </div>
 
   <div class="text-right">
-    <!-- <input type="submit" value="Invia"class="btn btn-primary"> -->
+    <input type="submit" value="Invia"class="btn btn-primary">
   <a href="{{route('posts.index') }}"class="btn btn-dark">Indietro</a>
   </div>
 

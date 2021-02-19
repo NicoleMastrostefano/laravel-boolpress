@@ -27,6 +27,16 @@
       <td>
         <a href="{{ route('posts.show',$post->id) }}" class="btn btn-outline-dark"><i class="fas fa-search-plus"></i></a>
       </td>
+      <td>
+        <a href="{{ route('posts.edit',$post->id) }}" class="btn btn-outline-dark"><i class="fas fa-pencil-alt"></i></a>
+      </td>
+      <td>
+        <form  action="{{ route('posts.destroy', $post->id)}}" method="post">
+          @csrf
+          @method('DELETE')
+          <button class="btn btn-outline-dark"><i class="fas fa-trash-alt"></i></button>
+        </form>
+      </td>
     </tr>
     @endforeach
   </tbody>
