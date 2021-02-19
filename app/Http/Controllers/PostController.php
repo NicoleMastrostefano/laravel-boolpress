@@ -49,12 +49,13 @@ class PostController extends Controller
       $request->validate($this->postValidation);
 
       $post = new Post();
-
+      $title = $post->title;
       $post->fill($data);
       $post->save();
       //
       return redirect()
-      ->route('posts.index');
+      ->route('posts.index')
+      ->with('message', 'Post ' . $title. " creato correttamente!");
     }
 
     /**
@@ -97,8 +98,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+      $title = $post->title;
+      $post->delete();
+
+      return redirect()
+      ->route('posts.index')
+      ->with('message', 'Post ' . $title. " cancellato correttamente!");
     }
 }

@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 Route::resource('posts','PostController');
 Route::resource('comment', 'CommentController');
+Route::get('/blog/{slug}','BlogController@show');
+
+// route commento post per id
+Route::post('/blog/{id}/comment','BlogController@addComment')->name('add-comment');

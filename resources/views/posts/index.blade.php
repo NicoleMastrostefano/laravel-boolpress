@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+@if (session('message'))
+<div class="alert alert-success">
+  {{ session('message') }}
+</div>
+@endif
 
 
 <table class="table table-light table-striped table-bordered">
@@ -25,16 +30,16 @@
       <td> {{ $post->author }}</td>
       <td> {{ $post->publication_date }}</td>
       <td>
-        <a href="{{ route('posts.show',$post->id) }}" class="btn btn-outline-dark"><i class="fas fa-search-plus"></i></a>
+        <a href="{{ route('posts.show',$post->id) }}" class="btn btn-info"><i class="fas fa-search-plus"></i></a>
       </td>
       <td>
-        <a href="{{ route('posts.edit',$post->id) }}" class="btn btn-outline-dark"><i class="fas fa-pencil-alt"></i></a>
+        <a href="{{ route('posts.edit',$post->id) }}" class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
       </td>
       <td>
-        <form  action="{{ route('posts.destroy', $post->id)}}" method="post">
+        <form action="{{ route('posts.destroy', $post->id)}}" method="post">
           @csrf
           @method('DELETE')
-          <button class="btn btn-outline-dark"><i class="fas fa-trash-alt"></i></button>
+          <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
         </form>
       </td>
     </tr>

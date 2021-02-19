@@ -19,6 +19,13 @@
         <h5> <i class="fas fa-user"></i> {{ $comment->author }}</h5>
         <p> {{ $comment->text }}</p>
         <small>{{ $comment->created_at }}</small>
+        <div class="text-right">
+          <form action="{{ route('comment.destroy', $post->id)}}" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-outline-dark"><i class="fas fa-trash-alt"></i></button>
+          </form>
+        </div>
         <hr>
       @endforeach
       </div>
