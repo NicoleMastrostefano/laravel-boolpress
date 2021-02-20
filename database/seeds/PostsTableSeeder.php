@@ -21,6 +21,7 @@ class PostsTableSeeder extends Seeder
           $newPost->title = $faker->sentence(8);
           $newPost->slug = Str::slug($newPost->title);
           $newPost->subtitle = $faker->sentence(5);
+          $newPost->image = $faker->imageUrl(640, 480, 'nature');
           $newPost->text = $faker->text(5000);
           $newPost->author = $faker->name;
           $newPost->publication_date = $faker->dateTime();

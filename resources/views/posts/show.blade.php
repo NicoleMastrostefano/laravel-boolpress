@@ -1,4 +1,4 @@
-<!-- PROVE backend gestionale -->
+<!-- backend gestionale -->
 
 
 @extends('layouts.main')
@@ -9,6 +9,9 @@
     <h1>{{ $post->title }}</h1>
     <h3> {{ $post->subtitle }}</h3>
     <small> {{$post->author}} - {{$post->publication_date}} - {{ $post->infoPost->post_status }} - {{$post->infoPost->comment_status }}</small>
+    <div class="my-3">
+      <img src="{{ $post->image}}" alt="">
+    </div>
     <p class="mt-4"> {{ $post->text }}</p>
     <div class="text-right">
       <a href="{{ route('posts.edit',$post->id)}}"class="btn btn-lg btn-dark">Modifica post</a>
@@ -26,7 +29,7 @@
           <form action="{{ route('comment.destroy', $post->id)}}" method="post">
             @csrf
             @method('DELETE')
-            <button class="btn btn-outline-dark"><i class="fas fa-trash-alt"></i></button>
+            <!-- <button class="btn btn-outline-dark"><i class="fas fa-trash-alt"></i></button> -->
           </form>
         </div>
         <hr>

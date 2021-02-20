@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title',100);
             $table->string('slug',100);
             $table->string('subtitle',80);
+            $table->string('image');
             $table->mediumText('text');
             $table->string('author',50);
             $table->date('publication_date');

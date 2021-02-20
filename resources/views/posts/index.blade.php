@@ -17,6 +17,7 @@
     <tr>
       <th>ID</th>
       <th>Titolo</th>
+      <th>Image</th>
       <th>Autore</th>
       <th>Data</th>
       <th></th>
@@ -27,6 +28,7 @@
     <tr>
       <td> {{ $post->id }}</td>
       <td> {{ $post->title }}</td>
+      <td> <img src="{{ asset($post->image) }}" alt=""class="img-thumbnail rounded"></td>
       <td> {{ $post->author }}</td>
       <td> {{ $post->publication_date }}</td>
       <td>

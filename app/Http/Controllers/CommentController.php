@@ -95,12 +95,11 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-      // $author = $comment->author;
-      // $comment->delete();
-      //
-      // return redirect()
-      // ->route('posts.index');
+      // da terminare
+      $comment->delete();
 
-
+      return redirect()
+      ->route('posts.index')
+      ->with('message', 'Commento ' . " cancellato correttamente!");
     }
 }
