@@ -13,8 +13,8 @@
       <img src="{{ $post->image}}" alt="">
     </div>
     <p class="mt-4"> {{ $post->text }}</p>
-    <div class="text-right">
-      <a href="{{ route('posts.edit',$post->id)}}"class="btn btn-lg btn-dark">Modifica post</a>
+    <div class="text-left">
+      <a href="{{ route('posts.edit',$post->id)}}"class="btn btn-lg btn-primary">Modifica post</a>
     </div>
   </div>
     @if($post->infoPost->post_status == 'public')
