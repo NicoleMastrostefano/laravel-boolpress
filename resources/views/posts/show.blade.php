@@ -9,6 +9,8 @@
     <h1>{{ $post->title }}</h1>
     <h3> {{ $post->subtitle }}</h3>
     <small> {{$post->author}} - {{$post->publication_date}} - {{ $post->infoPost->post_status }} - {{$post->infoPost->comment_status }}</small>
+    <div class="text-center">
+		</div>
     <div class="my-3">
       <img src="{{ $post->image}}" alt="">
     </div>

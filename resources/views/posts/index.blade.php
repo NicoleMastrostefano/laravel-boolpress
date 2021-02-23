@@ -20,7 +20,6 @@
       <th>Image</th>
       <th>Autore</th>
       <th>Data</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>

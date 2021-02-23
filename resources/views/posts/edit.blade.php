@@ -55,6 +55,16 @@
       <option value="private"{{ ($post->infoPost->comment_status=='private')?'selected': '' }}>PRIVATE</option>
     </select>
   </div>
+  @dump($post->tags())
+  <div class="form-group">
+    <label for="comment_status">TAGS</label>
+      @foreach ($tags as $tag)
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="{{ $tag->name }}" name="tags[]" value="{{ $tag->id }}">
+          <label class="custom-control-label" for="{{ $tag->name }}">{{ $tag->name }}</label>
+        </div>
+      @endforeach
+  </div>
   <div class="text-right">
     <input type="submit" value="Salva"class="btn btn-primary">
   <a href="{{route('posts.index') }}"class="btn btn-dark">Indietro</a>

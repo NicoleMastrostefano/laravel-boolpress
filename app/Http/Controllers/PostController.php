@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\InfoPost;
+use App\Tag;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -12,6 +13,7 @@ class PostController extends Controller
   private $postValidation = [
       'title'=>'required|max:150',
       'subtitle'=>'required|max:150',
+      'image' => 'nullable',
       'text'=>'required|max:5000',
       'author'=>'required|max:60',
       'publication_date'=>'required'
@@ -35,7 +37,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create',compact('tags'));
     }
 
     /**
@@ -54,7 +57,11 @@ class PostController extends Controller
       $post = new Post();
       $title = $post->title;
       $post->fill($data);
-      $post->save();
+      $postSaveResult = $newPost->save();
+
+        if($postSaveResult && !empty($data['tags'])) {
+            $newPost->tags()->attach($data['tags']);
+        }
 
       // creo e salvo il infoPost
       $data['post_id']=$post->id;
@@ -86,7 +93,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        $tags = Tag::all();
+        return view('posts.edit',compact('post','tags'));
     }
 
     /**
@@ -108,6 +116,12 @@ class PostController extends Controller
       $data['post_id']=$post->id;
       $post->update($data);
 
+      if(empty($data['tags'])) {
+            $post->tags()->detach();
+        } else {
+            $post->tags()->sync($data['tags']);
+        }
+        
       return redirect()
       ->route('posts.index')
       ->with('message','Post' . " aggiornato correttamente!");

@@ -6,6 +6,11 @@
     <h1 class="mt-4">{{ $post->title }}</h1>
     <h3> {{ $post->subtitle }}</h3>
     <small> {{$post->author}} - {{$post->publication_date}} - {{ $post->infoPost->post_status }} - {{$post->infoPost->comment_status }}</small>
+    <div class="text-center">
+      <!-- @foreach ($post->$tags as $tag)
+      <span class="badge badge-info">{{$tag->name}}</span>
+      @endforeach -->
+    </div>
   </header>
   <main>
     <p> {{ $post->text }}</p>
